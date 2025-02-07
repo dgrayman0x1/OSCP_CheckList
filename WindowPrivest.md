@@ -1,3 +1,12 @@
+#### Manual
+
+- Get-Process
+- Get-LocalUser
+- Get-LocalGroup
+- Get-LocalGroupMember adminteam
+- systeminfo
+- ipconfig /all
+
 #### Powershell History
 
 - Get-History
@@ -6,6 +15,10 @@
 #### Interesting Microsoft Office and text files
 
 - Get-ChildItem -Path C:\ -Include _.txt,_.pdf,_.xls,_.xlsx,_.doc,_.docx -File -Recurse -ErrorAction SilentlyContinue
+
+#### Show hidden files
+
+- gci -force C:\Windows\System32
 
 #### KDBX file?
 
@@ -114,3 +127,7 @@
     - reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon"
   - SNMP Parameters?
     - reg query "HKLM\SYSTEM\Current\ControlSet\Services\SNMP"
+
+#### Enable RDP
+
+- reg add “HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server” /v "fDenyTSConnections" /t REG_DWORD /d 0 /f

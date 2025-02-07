@@ -32,11 +32,18 @@
 -> regular scan
 
 - sudo wpscan --url http://example.com
+- wpscan --url https://10.0.2.13:12380/blogblog --disable-tls-checks --passwords /usr/share/wordlists/rockyou.txt --usernames john --password-attack wp-login
+
+#### Enum4linux
+
+- enum4linux -a $IP
 
 ---
 
 #### Port Check
+
 -> **21 - FTP**
+
 - anonymous login
 - file upload, file download
 - login with password reuses, try default credentials
@@ -44,11 +51,13 @@
   - hydra -l admin -P /usr/share/seclists/SecLists-master/Passwords/Default-Credentials/ftp-betterdefaultpasslist.txt ftp://$ip
 
 -> **22 - SSH**
+
 - anonymous login
 - use ssh key to login
   - ssh -i <dt_key> -p 2222 user@ip
 
 -> **25 - SMTP**
+
 - run nmap
   - sudo nmap -sV -p25,465,587 --script _smtp_ $ip
 - enumerate users with a username list
@@ -56,17 +65,20 @@
 - brute force SMTP
 
 -> **80 & 443 / HTTP**
+
 - default login
 - check page source code
 - check for directory traversal or SQLi
 
 -> **110 - POP3**
+
 - scan
   - nmap --script "pop3-capabilities or pop3-ntlm-info" -sV -p 106-1000 $ip
 - login
   - telnet $ip $port
 
 -> **139 & 445 - SMB**
+
 - sudo nmap -Pn -p139 -T4 --script "discovery and smb\*" $ip
 - SMBCLIENT
   - log in with credential
@@ -91,6 +103,7 @@
     - smbmap -H $ip
 
 -> **161 - SNMP**
+
 - scan
   - sudo nmap -sU -p161 --script _snmp_ $ip
   - snmpbulkwalk -Cr1000 -c public -v2c $ip . > snmpwalk.1
@@ -98,14 +111,21 @@
   - snmpwalk -v 2c -c public $ip NET-SNMP-EXTEND-MIB::nsExtendOutputFull NET-SNMP-EXTEND-MIB::nsExtendOutputFull."RESET" = STRING:
 
 -> **593 - RPC**
+
 - Enumerating shared resources, users, or groups anonymously with rpcclient
   - rpcclient -U "" -N $ip
     - enumdomusers option
 
 -> **3306 - mySQL**
+
 - linux ver
   - mysql -h $IP -u $user
 
 -> **5437 - postgreSQL**
+
 - connect with default cred
   - psql -U postgres -p 5437 -h $ip
+
+-> **DNS Enum**
+
+- dnsenum -r --dnsserver 192.168.189.172 --enum -p 0 -s 0 -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt vault.offsec
